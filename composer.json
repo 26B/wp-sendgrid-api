@@ -1,0 +1,37 @@
+{
+  "name": "twentysixb/wp-sendgrid-api",
+  "description": "Send e-mails with Sendgrid API using wp_mail",
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/26b/wp-sendgrid-api",
+  "require-dev": {},
+  "require": {
+    "composer/installers": "^1.0",
+    "sendgrid/sendgrid": "~7"
+  },
+  "authors": [
+    {
+      "name": "26b",
+      "email": "hello@26b.io"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "TwentySixB\\WP\\Plugin\\Sendgrid\\": "lib"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {}
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "prefer-stable": true,
+  "scripts": {
+    "test": "phpunit --testdox",
+    "test-report": "phpunit --log-junit build/phpunit/junit.xml tests",
+    "test-coverage": "phpunit --coverage-clover build/coverage/xml tests"
+  },
+  "suggest": {
+    "sendgrid/sendgrid": "Needed to send emails using SendGrid API."
+  }
+}

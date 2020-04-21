@@ -9,7 +9,7 @@
  * that starts the plugin.
  *
  * @link  https://github.com/26b/wp-sendgrid-api
- * @since 1.0.0
+ * @since 0.0.1
  *
  * @see https://github.com/sendgrid/sendgrid-php
  *
@@ -21,7 +21,7 @@
  * Plugin Name:       WP Sendgrid
  * Plugin URI:        https://github.com/26b/wp-sendgrid-api
  * Description:       Send e-mails with Sendgrid API using wp_mail.
- * Version:           1.0.0
+ * Version:           0.0.1
  * Author:            26b
  * Author URI:        https://26b.io/
  * License:           GPL-2.0+
@@ -52,6 +52,6 @@ add_action(
 	'plugins_loaded',
 	function () {
 
-		// TODO: Load code here.
+		// Load custom code as needed here.
 	}
 );

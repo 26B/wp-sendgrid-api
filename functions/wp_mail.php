@@ -4,8 +4,6 @@ if ( ! function_exists( 'wp_mail' ) ) {
 
 	function wp_mail( $to, $subject, $message, $headers = '', $attachments = array() ) {
 
-		// FIXME: Check for the use of necessary constants.
-
 		if ( ! defined( 'TWENTYSIXB_SENDGRID_API_KEY' ) ) {
 
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
@@ -15,9 +13,9 @@ if ( ! function_exists( 'wp_mail' ) ) {
 		/**
 		 * Filters the wp_mail() arguments.
 		 *
-		 * @since 1.0.0
+		 * @since 0.0.1
 		 *
-		 * @param array $args A compacted array of wp_mail() arguments, including the "to" email,
+		 * @param array $args A compacted array of wp_mail() arguments, including the "to" email address,
 		 *                    subject, message, headers, and attachments values.
 		 */
 		$filtered_wp_mail = apply_filters( 'wp_mail', compact( 'to', 'subject', 'message', 'headers', 'attachments' ) );
@@ -48,7 +46,7 @@ if ( ! function_exists( 'wp_mail' ) ) {
 		 *
 		 * Allows adding an array with keys to replace on the Sendgrid template.
 		 *
-		 * @since 1.0.0
+		 * @since 0.0.1
 		 *
 		 * @param array $args Should be a key, value list of strings.
 		 */
@@ -60,7 +58,7 @@ if ( ! function_exists( 'wp_mail' ) ) {
 		 *
 		 * Allows direct customization of the Mail object.
 		 *
-		 * @since 1.0.0
+		 * @since 0.0.1
 		 *
 		 * @param \SendGrid\Mail\Mail $email
 		 */
@@ -72,7 +70,7 @@ if ( ! function_exists( 'wp_mail' ) ) {
 			$response = $sendgrid->send( $email );
 
 			if ( $response->statusCode() !== 202 ) {
-				throw new \Exception( 'Sendgrid API did not accept' );
+				throw new \Exception( 'Sendgrid API did not accept email' );
 			}
 		} catch ( \Exception $e ) {
 
@@ -81,13 +79,5 @@ if ( ! function_exists( 'wp_mail' ) ) {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			error_log( 'Sendgrid API payload: ' . print_r( $response, true ) );
 		}
-
-		// FIXME: Remove debug code.
-		// echo '<pre>';
-		// var_dump(
-		// 	$filtered_wp_mail,
-		// 	$email
-		// );
-		// die('xx');
 	}
 }

@@ -13,8 +13,6 @@ by adding the constants described below.
     define( 'TWENTYSIXB_SENDGRID_FROM_NAME', 'Your name' );
 ```
 
-## Examples
-
 Define a template by replacing `<YOUR_TEMPLATE_ID>` with a template of your choice and or a category.
 
 ```php
@@ -30,15 +28,38 @@ Define a template by replacing `<YOUR_TEMPLATE_ID>` with a template of your choi
     );
 ```
 
-Add custom template variables and their replacements.
+## Hooks
+
+### `twentysixb_sendgrid_template_data`
+
+Define the values for the variables in your template.
+
 ```php
     add_filter(
         'twentysixb_sendgrid_template_data',
         function( $data ) {
 
-            $data['calltoaction'] = 'this should be a call to action link';
+            $data['cta_text'] = 'Subscribe CTA';
+            $data['cta_url']  = 'https://awesome.newsletter.com';
 
             return $data;
+        }
+    );
+```
+
+### `twentysixb_sendgrid_mail` (required)
+
+Configuration hook to define the template ID that is used.
+
+```php
+    add_filter(
+        'twentysixb_sendgrid_mail',
+        function( $email ) {
+
+            $email->setTemplateId( '<YOUR_TEMPLATE_ID>' );
+            $email->addCategory( 'website' );
+
+            return $email;
         }
     );
 ```

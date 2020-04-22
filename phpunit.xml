@@ -1,0 +1,27 @@
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="./tests/bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="true"
+         >
+  <testsuites>
+    <testsuite name="Main Test Suite">
+      <directory suffix=".php">./tests/</directory>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist>
+        <directory>./lib</directory>
+    </whitelist>
+  </filter>
+  <php>
+    <const name="TWENTYSIXB_SENDGRID_API_KEY" value="" />
+    <const name="TWENTYSIXB_SENDGRID_FROM_NAME" value="Some name" />
+    <const name="TWENTYSIXB_SENDGRID_FROM_EMAIL" value="someemail@26b.io" />
+  </php>
+</phpunit>

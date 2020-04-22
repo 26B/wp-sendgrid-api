@@ -3,7 +3,10 @@
   "description": "Send e-mails with Sendgrid API using wp_mail",
   "type": "wordpress-plugin",
   "homepage": "https://github.com/26b/wp-sendgrid-api",
-  "require-dev": {},
+  "require-dev": {
+    "10up/wp_mock": "^0.4.2",
+    "phpunit/phpunit": "^9.1"
+  },
   "require": {
     "composer/installers": "^1.0",
     "sendgrid/sendgrid": "~7"

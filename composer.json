@@ -1,5 +1,5 @@
 {
-  "name": "twentysixb/wp-sendgrid-api",
+  "name": "26b/wp-sendgrid-api",
   "description": "Send e-mails with Sendgrid API using wp_mail",
   "type": "wordpress-plugin",
   "homepage": "https://github.com/26b/wp-sendgrid-api",

@@ -7,7 +7,7 @@ Replacement `wp_mail()` to use Sendgrid API.
 Add your default configuration to maybe wp-config.php 
 by adding the constants described below.
 
-```php_
+```php
     define( 'TWENTYSIXB_SENDGRID_API_KEY', '<YOUR_API_KEY>' );
     define( 'TWENTYSIXB_SENDGRID_FROM_EMAIL', 'hello@26b.io' );
     define( 'TWENTYSIXB_SENDGRID_FROM_NAME', 'Your name' );

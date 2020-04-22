@@ -8,24 +8,24 @@ Add your default configuration to maybe wp-config.php
 by adding the constants described below.
 
 ```php
-    define( 'TWENTYSIXB_SENDGRID_API_KEY', '<YOUR_API_KEY>' );
-    define( 'TWENTYSIXB_SENDGRID_FROM_EMAIL', 'hello@26b.io' );
-    define( 'TWENTYSIXB_SENDGRID_FROM_NAME', 'Your name' );
+define( 'TWENTYSIXB_SENDGRID_API_KEY', '<YOUR_API_KEY>' );
+define( 'TWENTYSIXB_SENDGRID_FROM_EMAIL', 'hello@26b.io' );
+define( 'TWENTYSIXB_SENDGRID_FROM_NAME', 'Your name' );
 ```
 
 Define a template by replacing `<YOUR_TEMPLATE_ID>` with a template of your choice and or a category.
 
 ```php
-    add_filter(
-        'twentysixb_sendgrid_mail',
-        function( $email ) {
+add_filter(
+    'twentysixb_sendgrid_mail',
+    function( $email ) {
 
-            $email->setTemplateId( '<YOUR_TEMPLATE_ID>' );
-            $email->addCategory( 'website' );
+        $email->setTemplateId( '<YOUR_TEMPLATE_ID>' );
+        $email->addCategory( 'website' );
 
-            return $email;
-        }
-    );
+        return $email;
+    }
+);
 ```
 
 ## Hooks
@@ -35,16 +35,16 @@ Define a template by replacing `<YOUR_TEMPLATE_ID>` with a template of your choi
 Define the values for the variables in your template.
 
 ```php
-    add_filter(
-        'twentysixb_sendgrid_template_data',
-        function( $data ) {
+add_filter(
+    'twentysixb_sendgrid_template_data',
+    function( $data ) {
 
-            $data['cta_text'] = 'Subscribe CTA';
-            $data['cta_url']  = 'https://awesome.newsletter.com';
+        $data['cta_text'] = 'Subscribe CTA';
+        $data['cta_url']  = 'https://awesome.newsletter.com';
 
-            return $data;
-        }
-    );
+        return $data;
+    }
+);
 ```
 
 ### `twentysixb_sendgrid_mail` (required)
@@ -52,14 +52,14 @@ Define the values for the variables in your template.
 Configuration hook to define the template ID that is used.
 
 ```php
-    add_filter(
-        'twentysixb_sendgrid_mail',
-        function( $email ) {
+add_filter(
+    'twentysixb_sendgrid_mail',
+    function( $email ) {
 
-            $email->setTemplateId( '<YOUR_TEMPLATE_ID>' );
-            $email->addCategory( 'website' );
+        $email->setTemplateId( '<YOUR_TEMPLATE_ID>' );
+        $email->addCategory( 'website' );
 
-            return $email;
-        }
-    );
+        return $email;
+    }
+);
 ```

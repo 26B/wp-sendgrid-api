@@ -4,11 +4,8 @@ if ( ! function_exists( 'wp_mail' ) ) {
 
 	function wp_mail( $to, $subject, $message, $headers = '', $attachments = array() ) {
 
-		if ( ! defined( 'TWENTYSIXB_SENDGRID_API_KEY' ) ) {
-
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
-			error_log( 'TWENTYSIXB_SENDGRID_API_KEY not defined.' );
-		}
+		// Default template.
+		$template = apply_filters( 'sendgrid_template', '' );
 
 		/**
 		 * Filters the wp_mail() arguments.
@@ -23,23 +20,38 @@ if ( ! function_exists( 'wp_mail' ) ) {
 
 		$email = new \SendGrid\Mail\Mail();
 
-		$email->setFrom( TWENTYSIXB_SENDGRID_FROM_EMAIL, TWENTYSIXB_SENDGRID_FROM_NAME );
+		$from = apply_filters( 'sendgrid_from', [
+
+			// TODO: Get admin name and email
+			'name' => '', // Default to admin name.
+			'email' => '', // Default to admin email.
+		] );
+
+		$email->setFrom( $from['email'], $from['name'] );
 
 		// Set the defaults
 		$email->setSubject( $subject );
-		$email->addContent( 'text/plain', $message );
 
 		// FIXME: Default WP e-mails do not work well with HTML.
-		$email->addContent( 'text/html', $message );
+		$content_type = apply_filters( 'sengrid_content_type', 'text/html' );
+		$email->addContent( $content_type, $message );
 
 		// Destination.
 		$email->addTo( $to );
 
 		// Template customization if any template specified.
-		$template_data = [
-			'body'    => $message,
-			'subject' => $subject,
+		$template_data = is_array( $message ) ? $message : [
+			'body' => $message,
 		];
+
+
+		if ( ! empty( $template ) ) {
+			$email->setTemplate( $template );
+
+			if ( $content_type === 'text/plain' && isset( $template_data['body'] ) ) {
+				$template_data['body_html'] = wpautop( $template_data['body'] );
+			}
+		}
 
 		/**
 		 * Filters the template data.

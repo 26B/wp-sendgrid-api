@@ -45,6 +45,12 @@ if ( ! class_exists( '\SendGrid' ) ) {
 	error_log( 'Class SendGrid is not available. The plugin will do nothing.' );
 }
 
+if ( ! defined( 'TWENTYSIXB_SENDGRID_API_KEY' ) ) {
+
+	// phpcs:ignore WordPress.PHP.DevelopmentFunctions
+	error_log( 'TWENTYSIXB_SENDGRID_API_KEY not defined.' );
+}
+
 // Load pluggable wp_mail.
 include __DIR__ . '/functions/wp_mail.php';
 

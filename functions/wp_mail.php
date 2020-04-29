@@ -27,17 +27,13 @@ if ( ! function_exists( 'wp_mail' ) ) {
 
 		// Set the defaults
 		$email->setSubject( $subject );
-		$email->addContent( 'text/plain', $message );
-
-		// FIXME: Default WP e-mails do not work well with HTML.
-		$email->addContent( 'text/html', $message );
 
 		// Destination.
 		$email->addTo( $to );
 
 		// Template customization if any template specified.
 		$template_data = [
-			'body'    => $message,
+			'body'    => wpautop( $message ),
 			'subject' => $subject,
 		];
 

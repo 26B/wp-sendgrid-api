@@ -68,12 +68,17 @@ if ( ! function_exists( 'wp_mail' ) ) {
 			if ( $response->statusCode() !== 202 ) {
 				throw new \Exception( 'Sendgrid API did not accept email' );
 			}
+			
+			return true;
+			
 		} catch ( \Exception $e ) {
 
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			error_log( 'Sendgrid API expection: ' . $e->getMessage() );
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions
 			error_log( 'Sendgrid API payload: ' . print_r( $response, true ) );
+			
+			return false;
 		}
 	}
 }
